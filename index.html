@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>优秀青年 · 奖状拼豆图纸</title>
+<title>优秀青年 · 奖状拼豆设计工作台</title>
 <style>
   :root{
     --red:#b32126; --red-deep:#8c1218; --gold:#c9a227; --gold-soft:#e2d3ae;
-    --ink:#3a2a1c; --ink-soft:#6b5a3e; --paper:#fffdf6; --muted:#8a7a5c;
+    --ink:#3a2a1c; --ink-strong:#43331f; --ink-soft:#6b5a3e; --paper:#fffdf6; --muted:#8a7a5c;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   body{
@@ -18,10 +18,10 @@
     background-size:22px 22px;
     min-height:100vh;
   }
-  .wrap{max-width:1240px;margin:0 auto;padding:30px 20px 10px;}
+  .wrap{max-width:1280px;margin:0 auto;padding:28px 20px 10px;}
 
   /* ---------- 头部 ---------- */
-  header{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:22px;}
+  header{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:20px;}
   .seal{
     width:54px;height:54px;flex:none;border-radius:10px;
     background:linear-gradient(145deg,#c22b2f,#8c1218);
@@ -33,9 +33,9 @@
   }
   .title-box h1{
     font-family:"STZhongsong","STSong","SimSun",serif;
-    font-size:27px;letter-spacing:7px;color:var(--red-deep);
+    font-size:26px;letter-spacing:6px;color:var(--red-deep);
   }
-  .title-box p{font-size:12.5px;color:var(--muted);letter-spacing:1.5px;margin-top:6px;}
+  .title-box p{font-size:13px;color:#6b5a3e;margin-top:6px;}
 
   /* ---------- 主布局 ---------- */
   main{display:flex;gap:20px;align-items:flex-start;}
@@ -50,82 +50,127 @@
   #tip{
     position:absolute;display:none;pointer-events:none;z-index:5;
     background:#2e241a;color:#fff;font-size:12px;padding:4px 9px;border-radius:6px;
-    white-space:nowrap;box-shadow:0 4px 10px rgba(0,0,0,.25);letter-spacing:1px;
+    white-space:nowrap;box-shadow:0 4px 10px rgba(0,0,0,.25);letter-spacing:.5px;
   }
   .statusbar{
-    display:flex;justify-content:space-between;gap:12px;
-    font-size:12.5px;color:var(--muted);margin-top:14px;padding:0 4px;letter-spacing:1px;
+    display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+    font-size:13px;color:#6b5a3e;margin-top:14px;padding:0 4px;
   }
-  .statusbar b{color:var(--red);font-weight:600;}
+  .statusbar b{color:var(--red);font-weight:700;}
 
   /* ---------- 右侧面板 ---------- */
-  .panel{width:330px;flex:none;display:flex;flex-direction:column;gap:16px;}
+  .panel{width:344px;flex:none;display:flex;flex-direction:column;gap:16px;}
   .card{
     background:var(--paper);border:1px solid #eadfbc;border-radius:12px;
-    padding:16px 18px 18px;box-shadow:0 6px 18px rgba(90,60,20,.08);
+    padding:15px 18px 18px;box-shadow:0 6px 18px rgba(90,60,20,.08);
   }
   .card h2{
-    font-size:14px;color:var(--red-deep);letter-spacing:4px;font-weight:700;
+    font-size:15px;color:var(--red-deep);letter-spacing:3px;font-weight:700;
     display:flex;align-items:center;gap:9px;
-    padding-bottom:12px;margin-bottom:4px;
+    padding-bottom:11px;margin-bottom:4px;
     border-bottom:1px solid #f0e6cd;
   }
-  .card h2::before{content:"";width:4px;height:15px;background:var(--red);border-radius:2px;}
+  .card h2::before{content:"";width:4px;height:16px;background:var(--red);border-radius:2px;}
 
-  /* 每个设置项独立成块，用虚线分隔，避免文字挤在一起 */
-  .field{padding:13px 0 0;}
-  .field + .field{border-top:1px dashed #eee2c8;margin-top:13px;}
-  .field > label{
+  .field{padding:12px 0 0;}
+  .field + .field{border-top:1px dashed #eee2c8;margin-top:12px;}
+  .field > label, .flabel{
     display:flex;align-items:baseline;justify-content:space-between;gap:8px;
-    font-size:13px;color:var(--ink-soft);letter-spacing:1.5px;margin-bottom:9px;font-weight:600;
+    font-size:14px;color:var(--ink-strong);letter-spacing:.5px;margin-bottom:8px;font-weight:600;
   }
-  .field > label .hint{font-size:11.5px;color:#b3a480;font-weight:400;letter-spacing:1px;}
+  .field > label .hint, .flabel .hint{font-size:12px;color:#8f7a52;font-weight:400;letter-spacing:0;}
 
-  #nameIn{
-    width:100%;padding:9px 12px;font-size:15px;letter-spacing:4px;
+  .txt{
+    width:100%;padding:9px 12px;font-size:15px;letter-spacing:2px;
     border:1px solid #d8c9a4;border-radius:7px;background:#fff;color:var(--ink);
-    font-family:"Consolas","Courier New",monospace;font-weight:700;
+    font-weight:600;
   }
-  #nameIn:focus{outline:2px solid rgba(179,33,38,.22);border-color:var(--red);}
+  .txt:focus{outline:2px solid rgba(179,33,38,.22);border-color:var(--red);}
+  .txt.mono{font-family:"Consolas","Courier New",monospace;font-weight:700;}
 
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .row2 .txt{width:100%;}
+
+  /* 风格主题卡片 */
+  .themes{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+  .theme-card{
+    border:1.5px solid #e4d5ac;border-radius:10px;background:#fff;
+    padding:10px 11px;cursor:pointer;text-align:left;transition:.15s;font-family:inherit;
+  }
+  .theme-card .tn{font-size:14px;font-weight:700;color:var(--ink-strong);letter-spacing:1px;}
+  .theme-card .td{font-size:11.5px;color:#a08a5f;margin-top:2px;letter-spacing:0;}
+  .theme-card .dots{display:flex;gap:5px;margin-top:8px;}
+  .theme-card .dots i{width:14px;height:14px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.14);}
+  .theme-card:hover{border-color:#cfa14a;}
+  .theme-card.on{border-color:var(--red);background:#fdf1ef;box-shadow:0 0 0 1.5px var(--red);}
+
+  /* 文字颜色行 */
+  .color-row{display:flex;align-items:center;gap:10px;}
+  .color-row input[type=color]{
+    width:44px;height:32px;border:1px solid #d8c9a4;border-radius:7px;background:#fff;padding:2px;cursor:pointer;
+  }
+  .color-row input[type=color]:disabled{opacity:.35;cursor:not-allowed;}
+  .chk{
+    display:flex;align-items:center;gap:8px;cursor:pointer;
+    font-size:14px;color:var(--ink-strong);letter-spacing:.5px;font-weight:600;
+  }
+  .chk input{width:15px;height:15px;accent-color:var(--red);}
+  .chk .sub{font-size:12px;color:#8f7a52;font-weight:400;}
+
+  /* 上传图片 */
+  .upload-btn{
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    width:100%;padding:10px 0;border:1.5px dashed #cfa14a;border-radius:9px;background:#fdf8ea;
+    color:var(--ink-strong);font-size:14px;font-weight:600;letter-spacing:1px;cursor:pointer;transition:.15s;
+  }
+  .upload-btn:hover{background:#faf0d6;border-color:var(--gold);}
+  .src-line{
+    display:flex;align-items:center;justify-content:space-between;gap:8px;
+    margin-top:10px;font-size:13px;color:#6b5a3e;
+  }
+  .src-line b{color:var(--red-deep);}
+  .tip-box{
+    margin-top:10px;font-size:12px;line-height:1.9;color:#8f7a52;
+    background:#faf6e8;border-radius:8px;padding:8px 11px;
+  }
+
+  /* 显示设置 */
   .seg{display:flex;border:1px solid #d8c9a4;border-radius:8px;overflow:hidden;background:#fff;}
   .seg button{
     flex:1;padding:9px 0;border:none;background:transparent;cursor:pointer;
-    font-size:13px;letter-spacing:2px;color:var(--ink-soft);transition:.15s;
+    font-size:13.5px;letter-spacing:1px;color:var(--ink-soft);transition:.15s;font-weight:600;
   }
-  .seg button.on{background:var(--red);color:#fff;font-weight:600;}
+  .seg button.on{background:var(--red);color:#fff;}
   .seg button + button{border-left:1px solid #d8c9a4;}
-
-  .chk{
-    display:flex;align-items:center;gap:8px;cursor:pointer;
-    font-size:13px;color:var(--ink-soft);letter-spacing:1.5px;font-weight:600;
-  }
-  .chk input{width:15px;height:15px;accent-color:var(--red);}
-  .chk .sub{font-size:11.5px;color:#b3a480;font-weight:400;}
 
   .size-row{display:flex;align-items:center;gap:10px;}
   .size-row input[type=range]{flex:1;accent-color:var(--red);}
   #sBadge{
-    flex:none;min-width:46px;text-align:center;font-size:12.5px;font-weight:700;
+    flex:none;min-width:50px;text-align:center;font-size:13px;font-weight:700;
     color:var(--red-deep);background:#f8ecd2;border:1px solid #e8d7a8;border-radius:6px;padding:3px 0;
-    font-variant-numeric:tabular-nums;letter-spacing:0;
+    font-variant-numeric:tabular-nums;
   }
   .mini{
     flex:none;border:1px solid #d8c9a4;background:#fff;color:var(--ink-soft);border-radius:6px;
-    font-size:12px;padding:5px 10px;cursor:pointer;letter-spacing:1px;
+    font-size:12.5px;padding:6px 10px;cursor:pointer;letter-spacing:.5px;font-weight:600;
   }
   .mini:hover{border-color:var(--red);color:var(--red);}
 
-  #saveBtn{
+  .btn-red{
     width:100%;padding:10px 0;border:none;border-radius:8px;cursor:pointer;
-    background:var(--red);color:#fff;font-size:14px;letter-spacing:6px;font-weight:700;
+    background:var(--red);color:#fff;font-size:14px;letter-spacing:4px;font-weight:700;
     transition:.15s;box-shadow:0 4px 10px rgba(179,33,38,.28);
   }
-  #saveBtn:hover{background:#991a1f;}
+  .btn-red:hover{background:#991a1f;}
+  .btn-ghost{
+    width:100%;padding:9px 0;border:1.5px solid #d8c9a4;border-radius:8px;cursor:pointer;
+    background:#fff;color:var(--ink-soft);font-size:13.5px;letter-spacing:2px;font-weight:600;transition:.15s;
+  }
+  .btn-ghost:hover{border-color:var(--red);color:var(--red);}
 
   /* ---------- 配色用量清单 ---------- */
   .lg{
-    display:grid;grid-template-columns:22px 56px 1fr 76px;gap:10px;align-items:center;
+    display:grid;grid-template-columns:22px 64px 1fr 80px;gap:10px;align-items:center;
     padding:8px 6px;border-radius:7px;cursor:pointer;transition:.12s;
   }
   .lg:hover{background:#fdf3e3;}
@@ -138,26 +183,26 @@
       var(--c);
     box-shadow:inset 0 0 0 1px rgba(0,0,0,.10), 0 1px 2px rgba(0,0,0,.15);
   }
-  .nm{font-size:13.5px;letter-spacing:2px;color:var(--ink);}
+  .nm{font-size:14px;letter-spacing:1px;color:var(--ink);font-weight:600;}
   .bar{height:6px;background:#efe6cf;border-radius:3px;overflow:hidden;}
   .bar i{display:block;height:100%;background:var(--c);opacity:.85;border-radius:3px;}
-  .ct{font-size:13px;color:var(--ink-soft);text-align:right;font-variant-numeric:tabular-nums;}
-  .ct b{font-weight:700;color:var(--ink);}
+  .ct{font-size:13.5px;color:#6b5a3e;text-align:right;font-variant-numeric:tabular-nums;}
+  .ct b{font-weight:700;color:var(--ink);font-size:14px;}
   .lg-total{
     margin-top:10px;padding-top:11px;border-top:1px dashed #e2d3ae;
-    font-size:13px;color:var(--ink-soft);display:flex;justify-content:space-between;
-    letter-spacing:2px;font-weight:600;
+    font-size:14px;color:var(--ink-soft);display:flex;justify-content:space-between;
+    letter-spacing:1px;font-weight:700;
   }
 
   footer{
-    text-align:center;font-size:12px;color:var(--muted);line-height:2.1;
-    margin:26px 0 40px;letter-spacing:1px;
+    text-align:center;font-size:12.5px;color:var(--muted);line-height:2.1;
+    margin:24px 0 40px;
   }
 
-  @media (max-width:1020px){
+  @media (max-width:1040px){
     main{flex-direction:column;}
     .panel{width:100%;flex-direction:row;flex-wrap:wrap;}
-    .panel .card{flex:1;min-width:280px;}
+    .panel .card{flex:1;min-width:300px;}
     .title-box h1{font-size:22px;letter-spacing:4px;}
   }
 </style>
@@ -165,10 +210,10 @@
 <body>
 <div class="wrap">
   <header>
-    <div class="seal">拼豆<br>图纸</div>
+    <div class="seal">拼豆<br>工作台</div>
     <div class="title-box">
-      <h1>优秀青年 · 奖状</h1>
-      <p>90 × 58 颗 · 5 色配色 · 5mm 珠约 45 × 29 cm</p>
+      <h1>LT拼豆工作台</h1>
+      <p>90 × 58 颗 · 4 种主题风格 · 支持照片一键生成图纸 · 5mm 珠约 45 × 29 cm</p>
     </div>
   </header>
 
@@ -185,13 +230,62 @@
     </section>
 
     <aside class="panel">
+      <!-- 风格主题 -->
       <div class="card">
-        <h2>拼搭设置</h2>
-        <div class="field">
-          <label>定制姓名缩写<span class="hint">拼在右下角，留空则不拼</span></label>
-          <input id="nameIn" maxlength="6" value="LT" spellcheck="false">
+        <h2>风格主题</h2>
+        <div class="themes" id="themeList"></div>
+      </div>
+
+      <!-- 文字定制 -->
+      <div class="card">
+        <h2>文字定制</h2>
+        <div class="field" style="padding-top:2px;">
+          <label>大标题<span class="hint">最多 6 字，自动适配字号</span></label>
+          <input class="txt" id="titleIn" maxlength="6" value="优秀青年">
         </div>
         <div class="field">
+          <label>顶部小字<span class="hint">如「奖状」「聘书」</span></label>
+          <div class="row2">
+            <input class="txt" id="subIn" maxlength="4" value="奖状">
+            <input class="txt mono" id="nameIn" maxlength="6" value="LT" placeholder="姓名缩写">
+          </div>
+        </div>
+        <div class="field">
+          <label class="chk">
+            <input type="checkbox" id="followChk" checked>
+            文字颜色跟随主题
+          </label>
+          <div class="color-row" style="margin-top:8px;">
+            <input type="color" id="textColor" value="#b32126" disabled>
+            <span style="font-size:12.5px;color:#8f7a52;">关闭「跟随主题」后可自选文字颜色</span>
+          </div>
+        </div>
+        <div class="field">
+          <label class="chk">
+            <input type="checkbox" id="showTextChk" checked>
+            在图案上显示文字<span class="sub">上传图片后可关闭，避免与图内文字重复</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- 图片生成 -->
+      <div class="card">
+        <h2>图片一键生成图纸</h2>
+        <label class="upload-btn" for="imgFile">选择图片（自动 1:1 取色映射）</label>
+        <input type="file" id="imgFile" accept="image/*" hidden>
+        <div class="src-line">
+          <span>当前图案来源：<b id="srcLabel">主题 · 经典红</b></span>
+          <button class="mini" id="resetBtn">恢复主题图案</button>
+        </div>
+        <div class="tip-box">
+          上传后将按 90 × 58 珠板逐像素匹配最接近的拼豆色；上传含文字的照片时可关闭「在图案上显示文字」，再通过上方「文字定制」重新排版文字。
+        </div>
+      </div>
+
+      <!-- 显示设置 -->
+      <div class="card">
+        <h2>显示设置</h2>
+        <div class="field" style="padding-top:2px;">
           <label>显示模式</label>
           <div class="seg">
             <button data-m="bead" class="on">圆珠模式</button>
@@ -205,7 +299,7 @@
           </label>
         </div>
         <div class="field">
-          <label>珠子大小<span class="hint">点击右侧可一键适应窗口</span></label>
+          <label>珠子大小</label>
           <div class="size-row">
             <input type="range" id="sRange" min="5" max="16" step="1">
             <span id="sBadge">10 px</span>
@@ -213,10 +307,11 @@
           </div>
         </div>
         <div class="field">
-          <button id="saveBtn">保存图纸 PNG</button>
+          <button class="btn-red" id="saveBtn">保存图纸 PNG</button>
         </div>
       </div>
 
+      <!-- 配色用量清单 -->
       <div class="card">
         <h2>配色用量清单</h2>
         <div id="legend"></div>
@@ -227,100 +322,187 @@
 
   <footer>
     小贴士：建议使用 5mm 中孔珠 + 透明大板拼接 · 白珠用量最大，建议多备 15% ·
-    熨斗中温（约 150℃）垫熨烫纸熨烫 15~20 秒 · 图纸可保存 PNG 后打印拼搭
+    熨斗中温（约 150℃）垫熨烫纸熨烫 15~20 秒 · 图纸可保存 PNG 打印拼搭 · 悬停查看珠子 / 点击色卡高亮同色
   </footer>
 </div>
 
 <script>
-/* ================= 基础数据 ================= */
+/* ================= 拼豆色板（专业常用色） ================= */
 const W = 90, H = 58;
 const COLORS = {
-  W : { hex:'#ffffff', name:'白色' },
-  R : { hex:'#d62526', name:'大红' },
-  DR: { hex:'#8c1218', name:'深红' },
-  Y : { hex:'#f9c518', name:'明黄' },
-  G : { hex:'#1d8a3e', name:'草绿' }
+  W : { hex:'#ffffff', name:'白色'   },
+  R : { hex:'#d62526', name:'大红'   },
+  DR: { hex:'#8c1218', name:'深红'   },
+  O : { hex:'#f07818', name:'橙色'   },
+  Y : { hex:'#f9c518', name:'明黄'   },
+  GD: { hex:'#d9a410', name:'金黄'   },
+  G : { hex:'#1d8a3e', name:'草绿'   },
+  DG: { hex:'#0d5c2a', name:'深绿'   },
+  LB: { hex:'#56aede', name:'天蓝'   },
+  DB: { hex:'#1d4e9e', name:'深蓝'   },
+  NB: { hex:'#173a75', name:'藏青'   },
+  P : { hex:'#f5a8c0', name:'粉色'   },
+  MP: { hex:'#e0338c', name:'玫红'   },
+  DP: { hex:'#a01a5b', name:'深玫'   },
+  PU: { hex:'#7d4bbd', name:'紫色'   },
+  LP: { hex:'#c9a8e8', name:'浅紫'   },
+  BR: { hex:'#7a4a21', name:'棕色'   },
+  GY: { hex:'#b8b8b8', name:'浅灰'   },
+  BK: { hex:'#2b2b2b', name:'黑色'   }
 };
-let grid = [];
-let initials = 'LT';
 
-/* ================= 图纸生成 ================= */
-// 1:1 还原照片：红黄绿证书边框 + 顶部绶带奖牌 + 流苏 + 灯笼 + 玫瑰 + 文字
-function buildGrid(){
+/* ================= 主题风格 ================= */
+const THEMES = {
+  classic: {
+    name:'经典红', desc:'原版照片还原',
+    frame:{ outer:'R',  bandA:'Y',  bandB:'G',  line:'R'  },
+    ribbon:{ main:'R',  shade:'DR' },
+    medal:{ ring:'R',  inner:'Y',  star:'R'  },
+    flower:{ a:'R',  b:'DR' },
+    lanternTassel:'Y',
+    text:'R'
+  },
+  gold: {
+    name:'鎏金岁月', desc:'深红描金',
+    frame:{ outer:'DR', bandA:'GD', bandB:'Y',  line:'DR' },
+    ribbon:{ main:'DR', shade:'R'  },
+    medal:{ ring:'DR', inner:'GD', star:'R'  },
+    flower:{ a:'DR', b:'R'  },
+    lanternTassel:'GD',
+    text:'DR'
+  },
+  blue: {
+    name:'青春蓝', desc:'清新学院风',
+    frame:{ outer:'DB', bandA:'LB', bandB:'W',  line:'DB' },
+    ribbon:{ main:'DB', shade:'NB' },
+    medal:{ ring:'DB', inner:'W',  star:'DB' },
+    flower:{ a:'DB', b:'LB' },
+    lanternTassel:'LB',
+    text:'DB'
+  },
+  pink: {
+    name:'樱花粉', desc:'甜美青春风',
+    frame:{ outer:'MP', bandA:'P',  bandB:'W',  line:'MP' },
+    ribbon:{ main:'MP', shade:'DP' },
+    medal:{ ring:'MP', inner:'W',  star:'MP' },
+    flower:{ a:'MP', b:'DP' },
+    lanternTassel:'P',
+    text:'MP'
+  }
+};
+
+/* ================= 状态 ================= */
+let grid = [];
+let imgGrid = null;                       // 上传图片映射出的底图
+let source = { type:'theme', theme:'classic' };
+let curTheme = 'classic';                 // 当前主题（上传图片后仍保留，用于文字取色）
+let settings = {
+  title:'优秀青年', subtitle:'奖状', initials:'LT',
+  followTheme:true, customColor:'#b32126', showText:true
+};
+let mode = 'bead', sel = null, hover = null;
+let s = 10, manualSize = false;
+
+/* ================= 主题图案生成 ================= */
+function buildThemeGrid(key){
+  const T = THEMES[key];
   grid = Array.from({length:H}, () => Array(W).fill('W'));
   const P = (x,y,k) => { if(x>=0 && x<W && y>=0 && y<H) grid[y][x] = k; };
   const rect = (x,y,w,h,k) => { for(let j=y;j<y+h;j++) for(let i=x;i<x+w;i++) P(i,j,k); };
-  const f = i => (Math.floor(i/3) % 2 ? 'G' : 'Y');   // 黄绿 3 珠块交替
+  const f = i => (Math.floor(i/3) % 2 ? T.frame.bandB : T.frame.bandA);
 
-  /* ---- 三段式边框：红外边 2 + 黄绿块带 2 + 红细线 1 ---- */
-  for(let x=0;x<W;x++){ P(x,0,'R'); P(x,1,'R'); P(x,H-1,'R'); P(x,H-2,'R'); }
-  for(let y=0;y<H;y++){ P(0,y,'R'); P(1,y,'R'); P(W-1,y,'R'); P(W-2,y,'R'); }
+  /* ---- 三段式边框 ---- */
+  for(let x=0;x<W;x++){ P(x,0,T.frame.outer); P(x,1,T.frame.outer); P(x,H-1,T.frame.outer); P(x,H-2,T.frame.outer); }
+  for(let y=0;y<H;y++){ P(0,y,T.frame.outer); P(1,y,T.frame.outer); P(W-1,y,T.frame.outer); P(W-2,y,T.frame.outer); }
   for(let y=2;y<=H-3;y++) [2,3,W-4,W-3].forEach(cx => P(cx,y,f(y)));
   for(let x=2;x<=W-3;x++) [2,3,H-4,H-3].forEach(cy => P(x,cy,f(x)));
-  for(let x=4;x<=W-5;x++){ P(x,4,'R'); P(x,H-5,'R'); }
-  for(let y=4;y<=H-5;y++){ P(4,y,'R'); P(W-5,y,'R'); }
+  for(let x=4;x<=W-5;x++){ P(x,4,T.frame.line); P(x,H-5,T.frame.line); }
+  for(let y=4;y<=H-5;y++){ P(4,y,T.frame.line); P(W-5,y,T.frame.line); }
 
   /* ---- 顶部红绶带（燕尾翼）---- */
   for(let x=8;x<=81;x++){
     const dx = Math.abs(x - 44.5);
-    const ybot = dx < 12 ? 6 : dx < 20 ? 5 : 4;   // 中间厚、翼尖薄
-    for(let y=0;y<=ybot;y++) P(x,y,'R');
+    const ybot = dx < 12 ? 6 : dx < 20 ? 5 : 4;
+    for(let y=0;y<=ybot;y++) P(x,y,T.ribbon.main);
   }
-  [[8,1],[81,-1]].forEach(([x0,sgn]) => {         // 翼尖燕尾剪口，露回黄绿带
+  [[8,1],[81,-1]].forEach(([x0,sgn]) => {
     P(x0,2,f(x0)); P(x0,3,f(x0)); P(x0+sgn,3,f(x0+sgn));
   });
 
-  /* ---- 中央奖牌：红圈 + 黄底 + 红星 ---- */
+  /* ---- 中央奖牌 ---- */
   const mcx = 44.5, mcy = 3.6, mr = 5.1;
   for(let y=0;y<=9;y++) for(let x=39;x<=50;x++){
     const d = Math.hypot(x-mcx, y-mcy);
-    if(d <= mr) P(x, y, d <= 3.9 ? 'Y' : 'R');
+    if(d <= mr) P(x, y, d <= 3.9 ? T.medal.inner : T.medal.ring);
   }
   const star = ['...X...','..XXX..','XXXXXXX','.XXXXX.','..XXX..','.XX.XX.'];
-  star.forEach((row,i) => [...row].forEach((ch,j) => { if(ch==='X') P(41+j, 1+i, 'R'); }));
-  rect(40,8,10,2,'R');                            // 奖牌下的蝴蝶结带
-  [40,41,42,43,46,47,48,49].forEach(x => P(x,10,'R'));
+  star.forEach((row,i) => [...row].forEach((ch,j) => { if(ch==='X') P(41+j, 1+i, T.medal.star); }));
+  rect(40,8,10,2,T.ribbon.main);
+  [40,41,42,43,46,47,48,49].forEach(x => P(x,10,T.ribbon.main));
 
-  /* ---- 两侧垂穗（吊绳 + 菱形坠）---- */
+  /* ---- 两侧垂穗 ---- */
   [13,76].forEach(tx => {
-    for(let y=5;y<=10;y++) P(tx,y,'R');
-    P(tx-1,11,'R'); P(tx,11,'R'); P(tx+1,11,'R');
-    P(tx-1,12,'R'); P(tx,12,'DR'); P(tx+1,12,'R');
-    P(tx,13,'R');
+    for(let y=5;y<=10;y++) P(tx,y,T.ribbon.main);
+    P(tx-1,11,T.ribbon.main); P(tx,11,T.ribbon.main); P(tx+1,11,T.ribbon.main);
+    P(tx-1,12,T.ribbon.shade); P(tx,12,T.ribbon.shade); P(tx+1,12,T.ribbon.shade);
+    P(tx,13,T.ribbon.main);
   });
 
   /* ---- 底部两角灯笼 ---- */
   const lantern = (cx,cy) => {
     for(let y=-5;y<=5;y++) for(let x=-5;x<=5;x++){
       const d = Math.hypot(x/4.2, y/3.6);
-      if(d <= 1) P(cx+x, cy+y, d > 0.8 ? 'DR' : 'R');
+      if(d <= 1) P(cx+x, cy+y, d > 0.8 ? T.flower.b : T.flower.a);
     }
-    rect(cx-1,cy-4,3,1,'DR');                     // 上下灯盖
-    rect(cx-1,cy+4,3,1,'DR');
-    P(cx,cy+5,'Y'); P(cx,cy+6,'Y');               // 黄色小穗
+    rect(cx-1,cy-4,3,1,T.flower.b);
+    rect(cx-1,cy+4,3,1,T.flower.b);
+    P(cx,cy+5,T.lanternTassel); P(cx,cy+6,T.lanternTassel);
   };
   lantern(11,51); lantern(78,51);
 
-  /* ---- 底部双玫瑰 + 小花苞（螺旋暗纹）---- */
+  /* ---- 底部双玫瑰 + 花苞 ---- */
   const rose = (cx,cy,r) => {
     for(let y=Math.floor(cy-r);y<=Math.ceil(cy+r);y++)
     for(let x=Math.floor(cx-r);x<=Math.ceil(cx+r);x++){
       const dx=x-cx, dy=y-cy, d=Math.hypot(dx,dy);
       if(d > r) continue;
       const a = Math.atan2(dy,dx);
-      P(x, y, (d < 1.4 || (d > 1.8 && Math.sin(2*a + d*2.1) > 0.42)) ? 'DR' : 'R');
+      P(x, y, (d < 1.4 || (d > 1.8 && Math.sin(2*a + d*2.1) > 0.42)) ? T.flower.b : T.flower.a);
     }
   };
   rose(39.5,51.5,4.7); rose(50.5,51.5,4.7); rose(45,48.8,2.7);
-
-  /* ---- 文字（画布采样成珠）---- */
-  const song = '"STZhongsong","STSong","SimSun","Songti SC",serif';
-  drawTextGrid('奖状', 26, 9, 38, 12, 10, song, 11, 'R');
-  drawTextGrid('优秀青年', 10, 21, 70, 19, 15, song, 2, 'R');
-  if(initials) drawTextGrid(initials, 54, 39, 28, 9, 7, '"Consolas","Courier New",monospace', 1, 'R');
 }
 
-// 把文字以 4 倍超采样画到离屏画布，再按覆盖率落珠
+/* ================= 图片 1:1 取色映射 ================= */
+function mapImage(img){
+  const oc = document.createElement('canvas');
+  oc.width = W; oc.height = H;
+  const c = oc.getContext('2d');
+  c.fillStyle = '#ffffff'; c.fillRect(0,0,W,H);
+  c.imageSmoothingEnabled = false;                      // 保持像素感
+  const scale = Math.min(W/img.width, H/img.height);
+  const dw = Math.max(1, Math.round(img.width*scale));
+  const dh = Math.max(1, Math.round(img.height*scale));
+  c.drawImage(img, Math.floor((W-dw)/2), Math.floor((H-dh)/2), dw, dh);
+  const d = c.getImageData(0,0,W,H).data;
+  const pal = Object.entries(COLORS)
+    .filter(([k]) => k !== 'CUS')
+    .map(([k,v]) => { const n = parseInt(v.hex.slice(1),16); return [k, n>>16&255, (n>>8)&255, n&255]; });
+  const g = Array.from({length:H}, () => Array(W).fill('W'));
+  for(let y=0;y<H;y++) for(let x=0;x<W;x++){
+    const i = (y*W + x)*4;
+    if(d[i+3] < 120){ g[y][x] = 'W'; continue; }
+    let best = 'W', bd = 1e9;
+    for(const [k,r,gg,b] of pal){
+      const dd = (d[i]-r)*(d[i]-r) + (d[i+1]-gg)*(d[i+1]-gg) + (d[i+2]-b)*(d[i+2]-b);
+      if(dd < bd){ bd = dd; best = k; }
+    }
+    g[y][x] = best;
+  }
+  return g;
+}
+
+/* ================= 文字渲染（离屏画布采样落珠） ================= */
 function drawTextGrid(str, rx, ry, rw, rh, fontPx, family, spacing, color){
   const S = 4;
   const oc = document.createElement('canvas');
@@ -330,7 +512,7 @@ function drawTextGrid(str, rx, ry, rw, rh, fontPx, family, spacing, color){
   c.font = '900 ' + fontPx*S + 'px ' + family;
   c.textBaseline = 'middle';
   c.lineJoin = 'round'; c.miterLimit = 2;
-  c.lineWidth = Math.max(2, fontPx*S*0.09);       // 描边加粗，贴近照片粗宋体
+  c.lineWidth = Math.max(2, fontPx*S*0.09);
   const chars = [...str];
   const ws = chars.map(ch => c.measureText(ch).width);
   const total = ws.reduce((a,b)=>a+b,0) + spacing*S*(chars.length-1);
@@ -345,8 +527,46 @@ function drawTextGrid(str, rx, ry, rw, rh, fontPx, family, spacing, color){
     let sum = 0;
     for(let sy=0;sy<S;sy++) for(let sx=0;sx<S;sx++)
       sum += data[(((gy*S+sy)*oc.width) + (gx*S+sx))*4 + 3];
-    if(sum/(S*S) > 105) grid[ry+gy][rx+gx] = color;
+    if(sum/(S*S) > 105 && rx+gx < W && ry+gy < H) grid[ry+gy][rx+gx] = color;
   }
+}
+
+const SONG = '"STZhongsong","STSong","SimSun","Songti SC",serif';
+function overlayText(){
+  const key = settings.followTheme
+    ? THEMES[curTheme].text
+    : (COLORS.CUS = { hex: settings.customColor, name:'自定义色' }, 'CUS');
+  const title = settings.title.trim();
+  const sub = settings.subtitle.trim();
+  const ini = settings.initials.trim().toUpperCase();
+  if(title){
+    const n = [...title].length;
+    const fp = Math.min(15, Math.floor((70 - 2*(n-1)) / n));
+    drawTextGrid(title, 10, 21, 70, 19, fp, SONG, 2, key);
+  }
+  if(sub){
+    const n = [...sub].length;
+    const sp = n <= 2 ? 11 : 4;
+    const tw = n*10 + sp*(n-1);
+    const rx = Math.max(5, Math.min(W-5-(tw+8), Math.round(45 - tw/2) - 4));
+    drawTextGrid(sub, rx, 9, tw+8, 12, 10, SONG, sp, key);
+  }
+  if(ini){
+    const n = [...ini].length;
+    const fp = n <= 3 ? 7 : n <= 5 ? 6 : 5;
+    drawTextGrid(ini, 54, 39, 28, 9, fp, '"Consolas","Courier New",monospace', 1, key);
+  }
+}
+
+/* ================= 组装当前图案 ================= */
+function rebuild(){
+  if(source.type === 'theme'){
+    buildThemeGrid(source.theme);
+  } else if(imgGrid){
+    grid = imgGrid.map(row => row.slice());
+  }
+  if(settings.showText) overlayText();
+  renderLegend(); draw();
 }
 
 /* ================= 渲染 ================= */
@@ -358,13 +578,9 @@ const hoverInfo = document.getElementById('hoverInfo');
 const selInfo = document.getElementById('selInfo');
 const legend = document.getElementById('legend');
 const totalCt = document.getElementById('totalCt');
-const nameIn = document.getElementById('nameIn');
 const sRange = document.getElementById('sRange');
 const sBadge = document.getElementById('sBadge');
-const sVal = document.getElementById('sBadge');
 const gridChk = document.getElementById('gridChk');
-const saveBtn = document.getElementById('saveBtn');
-let s = 10, manualSize = false, mode = 'bead', sel = null, hover = null;
 
 function fit(){
   const avail = card.clientWidth - 42;
@@ -379,7 +595,7 @@ function layout(){
 }
 function shade(hex, amt){
   const n = parseInt(hex.slice(1),16);
-  let r = n>>16&255, g = n>>8&255, b = n&255;
+  let r = n>>16&255, g = (n>>8)&255, b = n&255;
   const t = amt < 0 ? 0 : 255, a = Math.abs(amt);
   r = Math.round(r+(t-r)*a); g = Math.round(g+(t-g)*a); b = Math.round(b+(t-b)*a);
   return 'rgb(' + r + ',' + g + ',' + b + ')';
@@ -387,15 +603,12 @@ function shade(hex, amt){
 function draw(){
   layout();
   if(mode === 'bead'){
-    /* 底板 + 插孔点 */
     ctx.fillStyle = '#efe9dc'; ctx.fillRect(0,0,W*s,H*s);
     ctx.fillStyle = 'rgba(60,40,20,.08)';
     for(let y=0;y<=H;y++) for(let x=0;x<=W;x++) ctx.fillRect(x*s-0.75, y*s-0.75, 1.5, 1.5);
-    /* 圆珠 */
     for(let y=0;y<H;y++) for(let x=0;x<W;x++){
       const k = grid[y][x], hex = COLORS[k].hex;
-      const dim = sel && sel !== k;
-      if(dim) ctx.globalAlpha = 0.12;
+      if(sel && sel !== k) ctx.globalAlpha = 0.12;
       const cx = (x+0.5)*s, cy = (y+0.5)*s, r = s*0.46;
       const g = ctx.createRadialGradient(cx-s*0.15, cy-s*0.2, s*0.08, cx, cy, r);
       g.addColorStop(0, shade(hex, 0.30));
@@ -403,7 +616,7 @@ function draw(){
       g.addColorStop(1, shade(hex, -0.25));
       ctx.fillStyle = g;
       ctx.beginPath(); ctx.arc(cx, cy, r, 0, 7); ctx.fill();
-      ctx.fillStyle = 'rgba(0,0,0,.18)';           // 中孔
+      ctx.fillStyle = 'rgba(0,0,0,.18)';
       ctx.beginPath(); ctx.arc(cx, cy, s*0.15, 0, 7); ctx.fill();
       ctx.globalAlpha = 1;
     }
@@ -430,7 +643,7 @@ function draw(){
   }
 }
 
-/* ================= 交互 ================= */
+/* ================= 交互：画布 ================= */
 cv.addEventListener('mousemove', e => {
   const r = cv.getBoundingClientRect();
   const gx = Math.floor((e.clientX-r.left)/s), gy = Math.floor((e.clientY-r.top)/s);
@@ -440,11 +653,9 @@ cv.addEventListener('mousemove', e => {
     hoverInfo.innerHTML = '列 ' + gx + ' · 行 ' + gy + ' · <b>' + COLORS[k].name + '</b> ' + COLORS[k].hex.toUpperCase();
     tip.style.display = 'block';
     tip.textContent = COLORS[k].name + ' ' + COLORS[k].hex.toUpperCase();
-    tip.style.left = Math.min((gx+1)*s + 12, card.clientWidth - 90) + 'px';
+    tip.style.left = Math.min((gx+1)*s + 12, card.clientWidth - 100) + 'px';
     tip.style.top  = Math.max(gy*s - 30, 4) + 'px';
-  } else {
-    hover = null; tip.style.display = 'none';
-  }
+  } else { hover = null; tip.style.display = 'none'; }
   draw();
 });
 cv.addEventListener('mouseleave', () => {
@@ -453,7 +664,91 @@ cv.addEventListener('mouseleave', () => {
   draw();
 });
 
-/* 配色清单 */
+/* ================= 交互：风格主题 ================= */
+function renderThemes(){
+  themeList.innerHTML = Object.entries(THEMES).map(([key,T]) =>
+    '<button class="theme-card'+(source.type==='theme'&&source.theme===key?' on':'')+'" data-k="'+key+'">' +
+      '<div class="tn">'+T.name+'</div>' +
+      '<div class="td">'+T.desc+'</div>' +
+      '<div class="dots">' +
+        '<i style="background:'+COLORS[T.frame.outer].hex+'"></i>' +
+        '<i style="background:'+COLORS[T.frame.bandA].hex+'"></i>' +
+        '<i style="background:'+COLORS[T.ribbon.main].hex+'"></i>' +
+        '<i style="background:'+COLORS[T.medal.inner].hex+'"></i>' +
+      '</div>' +
+    '</button>').join('');
+}
+themeList.addEventListener('click', e => {
+  const b = e.target.closest('.theme-card');
+  if(!b) return;
+  source = { type:'theme', theme:b.dataset.k };
+  curTheme = b.dataset.k;
+  imgGrid = null;
+  srcLabel.textContent = '主题 · ' + THEMES[b.dataset.k].name;
+  if(settings.followTheme) textColor.value = COLORS[THEMES[b.dataset.k].text].hex;
+  renderThemes(); rebuild();
+});
+
+/* ================= 交互：文字 ================= */
+titleIn.addEventListener('input', () => { settings.title = titleIn.value; rebuild(); });
+subIn.addEventListener('input', () => { settings.subtitle = subIn.value; rebuild(); });
+nameIn.addEventListener('input', () => { settings.initials = nameIn.value; rebuild(); });
+followChk.addEventListener('change', () => {
+  settings.followTheme = followChk.checked;
+  textColor.disabled = settings.followTheme;
+  if(settings.followTheme) textColor.value = COLORS[THEMES[curTheme].text].hex;
+  rebuild();
+});
+textColor.addEventListener('input', () => { settings.customColor = textColor.value; rebuild(); });
+showTextChk.addEventListener('change', () => { settings.showText = showTextChk.checked; rebuild(); });
+
+/* ================= 交互：图片上传 ================= */
+imgFile.addEventListener('change', () => {
+  const file = imgFile.files && imgFile.files[0];
+  if(!file) return;
+  const img = new Image();
+  img.onload = () => {
+    imgGrid = mapImage(img);
+    source = { type:'image' };
+    srcLabel.textContent = '图片 · ' + file.name.slice(0,14);
+    renderThemes(); rebuild();
+    URL.revokeObjectURL(img.src);
+  };
+  img.onerror = () => alert('图片读取失败，请换一张试试');
+  img.src = URL.createObjectURL(file);
+});
+resetBtn.addEventListener('click', () => {
+  imgGrid = null;
+  source = { type:'theme', theme:'classic' };
+  curTheme = 'classic';
+  srcLabel.textContent = '主题 · 经典红';
+  if(settings.followTheme) textColor.value = COLORS[THEMES.classic.text].hex;
+  renderThemes(); rebuild();
+});
+
+/* ================= 交互：显示设置 ================= */
+document.querySelectorAll('.seg button').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.seg button').forEach(x => x.classList.remove('on'));
+  b.classList.add('on');
+  mode = b.dataset.m;
+  gridChk.disabled = (mode !== 'pixel');
+  draw();
+}));
+sRange.addEventListener('input', () => {
+  manualSize = true;
+  s = +sRange.value; sBadge.textContent = s + ' px';
+  draw();
+});
+fitBtn.addEventListener('click', () => { manualSize = false; fit(); draw(); });
+window.addEventListener('resize', () => { if(!manualSize) fit(); draw(); });
+saveBtn.addEventListener('click', () => {
+  const a = document.createElement('a');
+  a.download = '拼豆图纸-' + (source.type==='theme' ? THEMES[source.theme].name : '自定义图片') + '.png';
+  a.href = cv.toDataURL('image/png');
+  a.click();
+});
+
+/* ================= 配色用量清单 ================= */
 function renderLegend(){
   const counts = {};
   for(let y=0;y<H;y++) for(let x=0;x<W;x++) counts[grid[y][x]] = (counts[grid[y][x]]||0)+1;
@@ -476,36 +771,11 @@ legend.addEventListener('click', e => {
   renderLegend(); draw();
 });
 
-/* 控件 */
-nameIn.addEventListener('input', () => {
-  initials = nameIn.value.trim().toUpperCase().slice(0,6);
-  buildGrid(); renderLegend(); draw();
-});
-document.querySelectorAll('.seg button').forEach(b => b.addEventListener('click', () => {
-  document.querySelectorAll('.seg button').forEach(x => x.classList.remove('on'));
-  b.classList.add('on');
-  mode = b.dataset.m;
-  gridChk.disabled = (mode !== 'pixel');
-  draw();
-}));
-sRange.addEventListener('input', () => {
-  manualSize = true;
-  s = +sRange.value; sBadge.textContent = s + ' px';
-  draw();
-});
-fitBtn.addEventListener('click', () => { manualSize = false; fit(); draw(); });
-window.addEventListener('resize', () => { if(!manualSize) fit(); draw(); });
-saveBtn.addEventListener('click', () => {
-  const a = document.createElement('a');
-  a.download = '优秀青年奖状-拼豆图纸.png';
-  a.href = cv.toDataURL('image/png');
-  a.click();
-});
-
 /* ================= 启动 ================= */
-buildGrid(); fit(); draw(); renderLegend();
+renderThemes();
+rebuild(); fit(); draw();
 if(document.fonts && document.fonts.ready){
-  document.fonts.ready.then(() => { buildGrid(); draw(); renderLegend(); });
+  document.fonts.ready.then(() => { rebuild(); });
 }
 </script>
 </body>
